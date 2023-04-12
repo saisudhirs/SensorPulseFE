@@ -5,7 +5,7 @@ import {Box, Button} from "@mui/material"
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import login from "./useLogin";
+import login from "./hooks/useLogin";
 import * as CryptoJS from 'crypto-js';
 
 const hashString = (str: string): string => {

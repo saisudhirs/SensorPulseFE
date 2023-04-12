@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://smaran.ddns.net:34258';
+export const BASE_URL = 'http://smaran.ddns.net:34258';
 
 interface LoginResponse {
-    success: boolean;
-    message: string;
+    token: string
 }
 
 interface LoginRequest {
