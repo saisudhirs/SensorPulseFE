@@ -1,21 +1,22 @@
 import axios from "axios";
+import {BASE_URL} from "./useLogin";
 
 interface DataResponse {
     data: string;
-    sensorid: number;
+    sensorid: string;
     to: string;
     from: string
 }
 
 interface DataRequest {
     token: string;
-    sensorid: number;
+    sensorid: string;
     to: string;
     from: string
 }
 
 function getData({token, sensorid, to, from}: DataRequest): Promise<DataResponse> {
-    return axios.get(`$BASE_URL/data`, {
+    return axios.get(`${BASE_URL}/data`, {
         params: {
             token,
             sensorid,

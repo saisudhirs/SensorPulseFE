@@ -1,27 +1,39 @@
 import axios from "axios";
+import {BASE_URL} from "./useLogin";
 
-interface SensorsResponse {
-    sensorid: number;
-    sensorname: string;
-    unit: string
+export interface SensorsResponse {
+    sensorname: string,
+    sensorid: string,
+    units: string
 }
 
 interface SensorRequest {
     token: string
 }
 
-function getSensors({token}: SensorRequest): Promise<SensorsResponse> {
-    return axios.get(`$BASE_URL/sensors`, {
+interface SensorReturn {
+getSensors: SensorsResponse[]
+}
+
+export default function getSensors(token: string): Array<SensorsResponse> {
+ axios.get(`${BASE_URL}/sensors`, {
         params: {
             token,
         },
     })
-        .then(response => response.data)
+        .then(response => {
+            console.log(response.data.getSensors)
+            if (response) {
+                return response.data.getSensors
+            }
+            else return []
+        })
         .catch(error => {
             console.error('Error fetching login:', error);
             alert(error)
-            throw error;
+            return []
         })
+    return []
 }
 
-export default getSensors;
+// export default getSensors;

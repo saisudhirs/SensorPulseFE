@@ -7,6 +7,8 @@ import {useNavigate} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import login from "./hooks/useLogin";
 import * as CryptoJS from 'crypto-js';
+import {useAppDispatch} from "./redux/hooks";
+import {tokenSlice} from "./redux/store";
 
 const hashString = (str: string): string => {
     return CryptoJS.SHA512(str).toString();
@@ -16,6 +18,7 @@ const hashString = (str: string): string => {
 export default function Login() {
     const [state, setState] = useState({username: "", password: ""})
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({...state, [e.target.name]: e.target.value})
@@ -26,6 +29,8 @@ export default function Login() {
         const LoginRequest = {username: state.username as string, pwd: hashedString as string}
         login(LoginRequest).then(r => {
             if (r) {
+                const token = r
+                dispatch(tokenSlice.actions.setToken(token as unknown as string))
                 navigate("/dashboard")
             }
         })

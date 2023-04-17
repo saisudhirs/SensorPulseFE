@@ -11,14 +11,18 @@ interface LoginRequest {
     pwd: string;
 }
 
-function login({ username, pwd }: LoginRequest): Promise<LoginResponse> {
+function login({username, pwd}: LoginRequest): Promise<LoginResponse> {
     return axios.get(`${BASE_URL}/login`, {
         params: {
             username,
             pwd,
         },
     })
-        .then(response => response.data)
+        .then(response => {
+                return response.data
+            }
+        )
+
         .catch(error => {
             console.error('Error fetching login:', error);
             alert(error)
