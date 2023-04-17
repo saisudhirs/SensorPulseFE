@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./login";
 import Dashboard from "./dashboard";
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
 
 
 const root = ReactDOM.createRoot(
@@ -12,12 +14,15 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path={"/"} element={<Login/>}/>
-                <Route path={"/dashboard"} element={<Dashboard/>}/>
-            </Routes>
-        </BrowserRouter>
+        <Provider store={store}>
+
+            <BrowserRouter>
+                <Routes>
+                    <Route path={"/"} element={<Login/>}/>
+                    <Route path={"/dashboard"} element={<Dashboard/>}/>
+                </Routes>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>
 );
 
