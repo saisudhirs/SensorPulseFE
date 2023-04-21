@@ -12,28 +12,21 @@ interface SensorRequest {
 }
 
 interface SensorReturn {
-getSensors: SensorsResponse[]
+        rows: SensorsResponse[]
 }
 
-export default function getSensors(token: string): Array<SensorsResponse> {
- axios.get(`${BASE_URL}/sensors`, {
+export default function getSensors(token: string): Promise<Array<SensorsResponse>> {
+    return axios.get<SensorReturn>(`${BASE_URL}/sensors`, {
         params: {
             token,
         },
     })
         .then(response => {
-            console.log(response.data.getSensors)
-            if (response) {
-                return response.data.getSensors
-            }
-            else return []
+            return response.data.rows
         })
         .catch(error => {
             console.error('Error fetching login:', error);
             alert(error)
             return []
         })
-    return []
 }
-
-// export default getSensors;
