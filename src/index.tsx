@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Login from "./login";
-import Dashboard from "./dashboard";
+import Login from "./pages/login";
+import Dashboard from "./pages/dashboard";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 

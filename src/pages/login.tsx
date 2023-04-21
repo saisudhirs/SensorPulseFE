@@ -5,10 +5,10 @@ import {Box, Button} from "@mui/material"
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import login from "./hooks/useLogin";
+import login from "../hooks/useLogin";
 import * as CryptoJS from 'crypto-js';
-import {useAppDispatch} from "./redux/hooks";
-import {tokenSlice} from "./redux/store";
+import {useAppDispatch} from "../redux/hooks";
+import {tokenSlice} from "../redux/store";
 
 const hashString = (str: string): string => {
     return CryptoJS.SHA512(str).toString();
