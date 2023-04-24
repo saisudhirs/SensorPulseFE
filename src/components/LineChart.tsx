@@ -1,6 +1,9 @@
-import {Chart, Legend, LineSeries, Title} from '@devexpress/dx-react-chart-material-ui';
+import {Chart, Legend, LineSeries, Title,
+    ArgumentAxis,
+    ValueAxis} from '@devexpress/dx-react-chart-material-ui';
 import React from "react";
 import {useAppSelector} from "../redux/hooks";
+import {DataResponse} from "../hooks/getData";
 
 
 const chartData = {
@@ -24,7 +27,7 @@ const chartOptions = {
     }
 };
 
-export default function LineChart() {
+export default function LineChart({analytics} : {analytics: Array<DataResponse>}) {
     const sensorName = useAppSelector(state => state.sensors.sensorname)
     const unitName = useAppSelector(state => state.sensors.units)
     const data = [{
@@ -48,17 +51,18 @@ export default function LineChart() {
         "to": 1680157247885,
         "from": 1680157228338
     }]
-    const analytics = data[0].data
+    // const analytics = data[0].data
     // const analytics = [{label: "first", time: 100}, {label: "sirst", time: 200}, {label: "tirst", time: 100}]
     return <div>
         <Chart data={analytics}>
             <LineSeries valueField="val"
                         argumentField="time"
-                        name="Time"/>
+                        name={sensorName}/>
             <Title
                 text={sensorName}
             />
-            <Legend/>
+            {/*<Legend position={"bottom"}/>*/}
+            {/*<ArgumentAxis/>*/}
             {/*<ArgumentAxis*/}
             {/*    valueMarginsEnabled={false}*/}
             {/*    discreteAxisDivisionMode="crossLabels"*/}
