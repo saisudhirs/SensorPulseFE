@@ -25,7 +25,7 @@ export default function getSensors(token: string): Promise<Array<SensorsResponse
             return response.data.rows
         })
         .catch(error => {
-            console.error('Error fetching login:', error);
+            console.error('Error fetching sensors:', error);
             alert(error)
             return []
         })
